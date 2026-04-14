@@ -124,7 +124,7 @@ Configure a new application in Nife.io with the following settings.
 | Image | `louislam/uptime-kuma:1.19.6` |
 | Internal Port | `3001` |
 | External Port | `3001` |
-| Environment Variables | key= `KUMA_SERVER`   | value= `https://uptime.example.com` |
+| Environment Variables | key= `KUMA_SERVER` | value= `https://uptime.example.com` |
 | Suggested Replicas | `1` |
 
 ### Option 2: Deploy from the Git repository
