@@ -46,9 +46,11 @@ You will connect with those credentials:
 - Dockerized [UptimeKuma_RestAPI Image](https://hub.docker.com/repository/docker/medaziz11/uptimekuma_restapi)
 - Multi-architecture support (amd64, arm64)
 
-### Example :
 
-You can simply create a docker compose file like this :
+
+## Installation
+
+###  Using Docker Compose 
 
 ```yaml
 version: "3.9"
@@ -89,10 +91,36 @@ volumes:
 
 ---
 
+TOKEN=$(curl -X -L 'POST' -H 'Content-Type: application/x-www-form-urlencoded' --data 'username=admin&password=admin' http://127.0.0.1:8000/login/access-token/ | jq -r ".access_token")
+
 ```bash
-
-    TOKEN=$(curl -X -L 'POST' -H 'Content-Type: application/x-www-form-urlencoded' --data 'username=admin&password=admin' http://127.0.0.1:8000/login/access-token/ | jq -r ".access_token")
-
-    curl -L -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" http://127.0.0.1:8000/monitors/
-
+curl -X GET \
+  -H 'Accept: application/json' \
+  -H "Authorization: Bearer ${TOKEN}" \
+  http://127.0.0.1:8000/monitors/
 ```
+
+---
+
+## API Documentation
+
+The API provides comprehensive endpoint documentation through interactive Swagger UI. After starting the application:
+
+1. Navigate to `http://localhost:8000/docs`
+2. You can test endpoints directly in the UI
+3. Authorization is handled through the "Authorize" button at the top
+
+### Common Endpoints
+
+- `POST /login/access-token` - Get authentication token
+- `GET /monitors/` - List all monitors
+- `POST /monitors/` - Create a new monitor
+- `GET /status-page` - Get status page information
+
+For a complete list of endpoints, refer to the Swagger documentation or the endpoint images above.
+
+
+
+## Related Projects
+
+- [Uptime Kuma](https://github.com/nifetency/Uptime-Kuma-Web-API) 
