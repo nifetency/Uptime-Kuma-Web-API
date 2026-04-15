@@ -1,5 +1,7 @@
 # Uptime-Kuma-Web-API
 
+
+
 ## A REST API wrapper for [Uptime Kuma](https://github.com/louislam/uptime-kuma) using [Uptime-Kuma-API](https://github.com/lucasheld/uptime-kuma-api)
 
 ---
@@ -119,8 +121,33 @@ The API provides comprehensive endpoint documentation through interactive Swagge
 
 For a complete list of endpoints, refer to the Swagger documentation or the endpoint images above.
 
+##  Known Issues
+
+### CORS Issue with HTTPS Enabled
+
+When running Uptime Kuma with the Web API over HTTPS, you may encounter CORS (Cross-Origin Resource Sharing) errors when accessing the API from another application (e.g., frontend apps, Flutter web, etc.).
+
+**Issue Reference:**
+https://github.com/MedAziz11/Uptime-Kuma-Web-API/issues/76
+
+**Description:**
+Requests from external applications to the API may fail due to missing or misconfigured CORS headers when HTTPS is enabled.
+
+**Workaround / Fix:**
+
+* Ensure proper CORS configuration is added to the Web API server
+* Alternatively, use a reverse proxy (e.g., Nginx) to inject correct CORS headers
+* A modified version with potential fixes is available here:
+  https://github.com/nifetency/Uptime-Kuma-Web-API
+
+**Note:**
+This issue typically appears when accessing the API from a different origin (domain/port/protocol).
 
 
 ## Related Projects
 
-- [Uptime Kuma](https://github.com/nifetency/Uptime-Kuma-Web-API) 
+- [Uptime Kuma](https://github.com/nifetency/Uptime-Kuma-Web-API)
+
+---
+
+This repo is forked from [MedAziz11/Uptime-Kuma-Web-API](https://github.com/MedAziz11/Uptime-Kuma-Web-API)
