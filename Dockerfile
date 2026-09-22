@@ -12,7 +12,6 @@ RUN chown appuser:appgroup /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-
 # Create a virtual environment and activate it
 RUN python -m venv venv
 ENV PATH="/app/venv/bin:$PATH"
@@ -20,11 +19,14 @@ ENV PATH="/app/venv/bin:$PATH"
 # Upgrade pip and install the requirements
 COPY --chown=appuser:appgroup ./requirements.txt ./
 
-
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r ./requirements.txt
-       
+
+# Copy app code
 COPY --chown=appuser:appgroup ./app /app
+
+# Make entrypoint.sh executable in builder stage
+RUN chmod +x /app/entrypoint.sh
 
 USER appuser
 
@@ -36,6 +38,7 @@ FROM python:3.9-alpine
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup -s /bin/sh
 
 # Copy Python packages and the virtual environment from the builder stage
+# Permissions are preserved when copying from builder
 COPY --from=builder --chown=appuser:appgroup /app /app
 
 # Create /db directory to prevent permission issues
@@ -57,9 +60,5 @@ RUN chmod +x /app/entrypoint.sh
 
 USER appuser
 
-#Run the app
+# Run the app
 ENTRYPOINT ["/app/entrypoint.sh"]
-
-# ENTRYPOINT [ "tail", "-f", "/dev/null" ]
-
-
