@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nife-uptime-kuma-web-api"
+version = "0.1.0"
+description = "Nife-maintained REST API wrapper for Uptime Kuma"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+dynamic = ["dependencies"]
+classifiers = [
+    "Framework :: FastAPI",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/nifetency/Uptime-Kuma-Web-API"
+Source = "https://github.com/nifetency/Uptime-Kuma-Web-API"
+Issues = "https://github.com/nifetency/Uptime-Kuma-Web-API/issues"
+
+[tool.setuptools]
+package-dir = {"" = "app"}
+py-modules = ["main", "config", "app_setup"]
+
+[tool.setuptools.packages.find]
+where = ["app"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
