@@ -45,7 +45,7 @@ You will connect with those credentials:
 - Multi user Kuma api ( without privilege YET!!) with a small SQLite db
 - Easy to use REST API with most of the Uptime-Kuma features
 - Swagger Docs
-- Dockerized [UptimeKuma_RestAPI Image](https://hub.docker.com/repository/docker/medaziz11/uptimekuma_restapi)
+- Dockerized [Nife Uptime Kuma Web API image](https://hub.docker.com/r/nife123/uptime-kuma-web-api)
 - Multi-architecture support (amd64, arm64)
 
 
@@ -68,7 +68,7 @@ services:
 
   api:
     container_name: backend
-    image: medaziz11/uptimekuma_restapi
+    image: nife123/uptime-kuma-web-api:latest
     volumes:
       - api:/db
     restart: always
@@ -146,7 +146,7 @@ This issue typically appears when accessing the API from a different origin (dom
 
 ## Related Projects
 
-- [Uptime Kuma](https://github.com/nifetency/Uptime-Kuma-Web-API)
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma)
 
 ---
 
